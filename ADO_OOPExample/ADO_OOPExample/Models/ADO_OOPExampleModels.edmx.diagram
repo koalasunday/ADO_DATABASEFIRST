@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bdaaa952a70943a6a29269981a2141a5" Name="Diagram1">
+        <EntityTypeShape EntityType="TestADO_OOPModel.customer" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestADO_OOPModel.detail_transactions" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestADO_OOPModel.product" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestADO_OOPModel.transaction" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="TestADO_OOPModel.FK__transacti__CUSTO__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="TestADO_OOPModel.FK__detail_tr__PRODU__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="TestADO_OOPModel.FK__detail_tr__TRANS__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

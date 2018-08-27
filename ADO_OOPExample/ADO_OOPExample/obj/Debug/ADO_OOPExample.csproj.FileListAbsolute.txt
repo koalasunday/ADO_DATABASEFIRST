@@ -1,0 +1,10 @@
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\ADO_OOPExample.exe.config
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\ADO_OOPExample.exe
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\ADO_OOPExample.pdb
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\EntityFramework.dll
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\EntityFramework.SqlServer.dll
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\EntityFramework.xml
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\bin\Debug\EntityFramework.SqlServer.xml
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\obj\Debug\ADO_OOPExample.csprojResolveAssemblyReference.cache
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\obj\Debug\ADO_OOPExample.exe
+D:\kantor\VS\database_first\ADO_OOPExample\ADO_OOPExample\obj\Debug\ADO_OOPExample.pdb

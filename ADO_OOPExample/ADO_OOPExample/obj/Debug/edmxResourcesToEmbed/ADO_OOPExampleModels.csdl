@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestADO_OOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ALAMAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="transactions" Relationship="Self.FK__transacti__CUSTO__1BFD2C07" FromRole="customers" ToRole="transactions" />
+  </EntityType>
+  <EntityType Name="detail_transactions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TRANSACTION_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="PRODUCT_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="QUANTITY" Type="Int32" Nullable="false" />
+    <Property Name="PRICE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK__detail_tr__PRODU__276EDEB3" FromRole="detail_transactions" ToRole="products" />
+    <NavigationProperty Name="transaction" Relationship="Self.FK__detail_tr__TRANS__267ABA7A" FromRole="detail_transactions" ToRole="transactions" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STOCK" Type="Int32" Nullable="false" />
+    <Property Name="PRICE" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="detail_transactions" Relationship="Self.FK__detail_tr__PRODU__276EDEB3" FromRole="products" ToRole="detail_transactions" />
+  </EntityType>
+  <EntityType Name="transaction">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DATES" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="CUSTOMER_ID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="customer" Relationship="Self.FK__transacti__CUSTO__1BFD2C07" FromRole="transactions" ToRole="customers" />
+    <NavigationProperty Name="detail_transactions" Relationship="Self.FK__detail_tr__TRANS__267ABA7A" FromRole="transactions" ToRole="detail_transactions" />
+  </EntityType>
+  <Association Name="FK__transacti__CUSTO__1BFD2C07">
+    <End Role="customers" Type="Self.customer" Multiplicity="0..1" />
+    <End Role="transactions" Type="Self.transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="transactions">
+        <PropertyRef Name="CUSTOMER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detail_tr__PRODU__276EDEB3">
+    <End Role="products" Type="Self.product" Multiplicity="0..1" />
+    <End Role="detail_transactions" Type="Self.detail_transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="detail_transactions">
+        <PropertyRef Name="PRODUCT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__detail_tr__TRANS__267ABA7A">
+    <End Role="transactions" Type="Self.transaction" Multiplicity="0..1" />
+    <End Role="detail_transactions" Type="Self.detail_transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transactions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="detail_transactions">
+        <PropertyRef Name="TRANSACTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestADO_OOPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="customers" EntityType="Self.customer" />
+    <EntitySet Name="detail_transactions" EntityType="Self.detail_transactions" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="transactions" EntityType="Self.transaction" />
+    <AssociationSet Name="FK__transacti__CUSTO__1BFD2C07" Association="Self.FK__transacti__CUSTO__1BFD2C07">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="transactions" EntitySet="transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detail_tr__PRODU__276EDEB3" Association="Self.FK__detail_tr__PRODU__276EDEB3">
+      <End Role="products" EntitySet="products" />
+      <End Role="detail_transactions" EntitySet="detail_transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__detail_tr__TRANS__267ABA7A" Association="Self.FK__detail_tr__TRANS__267ABA7A">
+      <End Role="transactions" EntitySet="transactions" />
+      <End Role="detail_transactions" EntitySet="detail_transactions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
