@@ -29,16 +29,25 @@ namespace ADO_OOPExample
             switch (choice)
             {
                 case 1:
+                    Console.Clear();
+                    System.Console.Write("\n");
+                    System.Console.Write("- INSERT NEW CUSTOMER -\n\n");
                     Insert();
                     System.Console.Read();
                     break;
                 case 2:
+                    Console.Clear();
+                    System.Console.Write("\n");
+                    System.Console.Write("- UPDATE CUSTOMER -");
+                    System.Console.Write("\n\n");
                     System.Console.Write("Masukkan Id yang ingin di ubah : ");
-                    int input = Convert.ToInt32(System.Console.ReadLine());
+                    string input = System.Console.ReadLine();
                     Update(input);
                     break;
                 case 3:
-                    // update();
+                    System.Console.Write("Masukkan Id yang ingin di hapus : ");
+                    string input1 = System.Console.ReadLine();
+                    delete(input1);
                     System.Console.Read();
                     break;
                 case 4:
@@ -54,8 +63,9 @@ namespace ADO_OOPExample
 
         public void Insert()
         {
-            Console.Clear();
-            System.Console.Write("Please Input data of Customer : ");
+            //Console.Clear();
+            //System.Console.Write("\n");
+            //System.Console.Write("- INSERT NEW CUSTOMER -\n\n");
             System.Console.Write("Id      : ");
             string Id_CS = System.Console.ReadLine();
             System.Console.Write("Name    : ");
@@ -81,7 +91,7 @@ namespace ADO_OOPExample
             }
         }
 
-        public customer GetById(int input)
+        public customer GetById(string input)
         {
             var customer = _context.customers.Find(input);
             if (customer == null)
@@ -90,31 +100,39 @@ namespace ADO_OOPExample
             }
             return customer;
         }
-        public int Update(int input)
+        public string Update(string input)
         {
             System.Console.Write("Ubah Nama   : ");
             string Nama_cs = System.Console.ReadLine();
             System.Console.Write("Ubah Alamat : ");
             string Alamat_cs = System.Console.ReadLine();
-            System.Console.Write("ID    : ");
-            string id_cs = System.Console.ReadLine();
 
-            var getCutomer = _context.customers.Find(Convert.ToInt32(input));
+            var getCutomer = _context.customers.Find(input);
             if (getCutomer == null)
             {
-                System.Console.Write("TIDAK ADA ID MAHASISWA : " + id_cs);
+                System.Console.Write("TIDAK ADA ID CUSTOMER : " + input);
             }
             else
             {
                 customer cs = GetById(input);
                 cs.NAME = Nama_cs;
                 cs.ALAMAT = Alamat_cs;
-                cs.ID = id_cs;
 
                 _context.Entry(cs).State = System.Data.Entity.EntityState.Modified;
                 _context.SaveChanges();
             }
             return input;
+        }
+
+        public void delete(string input) {
+            using (var ctx = new TestADO_OOPEntities())
+            {
+                var x = (from y in ctx.customers
+                         where y.ID == input
+                         select y).FirstOrDefault();
+                ctx.customers.Remove(x);
+                ctx.SaveChanges();
+            }
         }
 
         public List<customer> Select()
