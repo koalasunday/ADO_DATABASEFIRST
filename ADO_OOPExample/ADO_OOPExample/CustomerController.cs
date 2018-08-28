@@ -40,17 +40,25 @@ namespace ADO_OOPExample
                     System.Console.Write("\n");
                     System.Console.Write("- UPDATE CUSTOMER -");
                     System.Console.Write("\n\n");
-                    System.Console.Write("Masukkan Id yang ingin di ubah : ");
+                    System.Console.Write("ID      : ");
                     string input = System.Console.ReadLine();
                     Update(input);
                     break;
                 case 3:
-                    System.Console.Write("Masukkan Id yang ingin di hapus : ");
+                    Console.Clear();
+                    System.Console.Write("\n");
+                    System.Console.Write("- DELETE CUSTOMER -");
+                    System.Console.Write("\n\n");
+                    System.Console.Write("ID      : ");
                     string input1 = System.Console.ReadLine();
                     delete(input1);
                     System.Console.Read();
                     break;
                 case 4:
+                    Console.Clear();
+                    System.Console.Write("\n");
+                    System.Console.Write("- SELECT ALL DATA CUSTOMERS -");
+                    System.Console.Write("\n\n");
                     Select();
                     System.Console.Read();
                     break;
@@ -63,9 +71,7 @@ namespace ADO_OOPExample
 
         public void Insert()
         {
-            //Console.Clear();
-            //System.Console.Write("\n");
-            //System.Console.Write("- INSERT NEW CUSTOMER -\n\n");
+            
             System.Console.Write("Id      : ");
             string Id_CS = System.Console.ReadLine();
             System.Console.Write("Name    : ");
@@ -96,15 +102,15 @@ namespace ADO_OOPExample
             var customer = _context.customers.Find(input);
             if (customer == null)
             {
-                System.Console.WriteLine("Id tersebut tidak ada");
+                System.Console.WriteLine("The Id is not found. Please, Try Again. ");
             }
             return customer;
         }
         public string Update(string input)
         {
-            System.Console.Write("Ubah Nama   : ");
+            System.Console.Write("Name    : ");
             string Nama_cs = System.Console.ReadLine();
-            System.Console.Write("Ubah Alamat : ");
+            System.Console.Write("Address : ");
             string Alamat_cs = System.Console.ReadLine();
 
             var getCutomer = _context.customers.Find(input);
